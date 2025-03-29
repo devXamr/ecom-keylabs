@@ -6,4 +6,4 @@ function CheckoutPage() {
     );
 }
 
-export default Page;
+export default CheckoutPage;

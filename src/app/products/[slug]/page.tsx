@@ -18,7 +18,7 @@ const gmkKeycapSets = [
     },
     {
         name: "GMK CYL BoW (Black on White)",
-        slug: "gmk-cyl-bow",
+        slug: "gmk-cyl-bow-(black-on-white)",
         description: "Enhances your keyboard with its classic color scheme, offering many available sets optimized for your needs.",
         features: [
             "Premium double-shot ABS keycap kit",
@@ -32,7 +32,7 @@ const gmkKeycapSets = [
     },
     {
         name: "GMK CYL WoB (White on Black)",
-        slug: "gmk-cyl-wob",
+        slug: "gmk-cyl-wob-(white-on-black)",
         description: "Features a classic white-on-black color scheme, offering a timeless aesthetic for your keyboard.",
         features: [
             "Premium double-shot ABS keycap kit",
@@ -76,9 +76,40 @@ const gmkKeycapSets = [
 
 function ProductPage() {
     return ( <div className='flex max-w-[70%] mx-auto'>
-        {gmkKeycapSets.map(eachProduct => <SingleProduct key={eachProduct.name} name={eachProduct.name} price={eachProduct.price} />)}
+            {gmkKeycapSets.map(eachProduct => <SingleProduct key={eachProduct.name} name={eachProduct.name} price={eachProduct.price} />)}
         </div>
-        );
+    );
 }
 
-export default ProductPage;
+ export async function SingleProductPage({params})  {
+
+    const {slug} = await params
+
+     const product = gmkKeycapSets.find(product => product.slug === slug)
+
+    return (
+        <div className='flex justify-center pt-10 gap-10'>
+            <div className='w-[700px] h-[900px] bg-gray-200'>
+                image here
+            </div>
+
+            <div>
+            <div className='font-bold'>{product?.name}</div>
+
+            <div>{product?.availability === 'Available' ? 'Available': 'Out of Stock'}</div>
+            <div>description: {product?.description}</div>
+
+            <div>features of the product: </div>
+            {product?.features.map(eachFeature => <div>
+                {eachFeature}
+            </div>)}
+            </div>
+
+
+
+
+        </div>
+    );
+}
+
+export default SingleProductPage;
